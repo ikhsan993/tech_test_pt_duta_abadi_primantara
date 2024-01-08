@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create 2D Array</title>
+    <script>
+      function create2DArray(n) {
+        const array2D = [];
+        for (let i = 0; i < n; i++) {
+          const row = [];
+          for (let j = 0; j < n; j++) {
+            row.push(i === j ? n : 0);
+          }
+          array2D.push(row);
+        }
+        return array2D;
+      }
+
+      function generateArray() {
+        const n = parseInt(document.getElementById("inputN").value);
+
+        if (isNaN(n) || n <= 0) {
+          alert("Masukkan nilai yang valid untuk n (bilangan bulat positif).");
+          return;
+        }
+
+        const result = create2DArray(n);
+        document.getElementById("hasil").innerHTML = formatArray(result);
+      }
+
+      function formatArray(array) {
+        return array.map((row) => row.join(" ")).join("<br>");
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Generate Array 2 Dimensi</h2>
+
+    <label for="inputN">Masukkan nilai n:</label>
+    <input type="number" id="inputN" placeholder="Masukkan nilai n" />
+
+    <br />
+
+    <button onclick="generateArray()">Generate</button>
+
+    <div id="hasil"></div>
+  </body>
+</html>

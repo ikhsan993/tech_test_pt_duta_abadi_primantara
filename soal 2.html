@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finding Most Frequent Letter</title>
+    <script>
+      function findMostFrequentLetter(sentence) {
+        const cleanSentence = sentence.replace(/\s/g, "").toLowerCase();
+
+        const letterCount = {};
+
+        for (let i = 0; i < cleanSentence.length; i++) {
+          const letter = cleanSentence[i];
+          letterCount[letter] = (letterCount[letter] || 0) + 1;
+        }
+
+        let mostFrequentLetter;
+        let highestCount = 0;
+
+        for (const letter in letterCount) {
+          if (letterCount[letter] > highestCount) {
+            mostFrequentLetter = letter;
+            highestCount = letterCount[letter];
+          }
+        }
+
+        return `Huruf ${mostFrequentLetter} muncul sebanyak ${highestCount} kali.`;
+      }
+
+      function checkMostFrequentLetter() {
+        const kalimat = document.getElementById("kalimat").value;
+
+        if (kalimat.trim() === "") {
+          alert("Masukkan kalimat terlebih dahulu.");
+          return;
+        }
+
+        const result = findMostFrequentLetter(kalimat);
+        document.getElementById("hasil").innerHTML = result;
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Mencari Huruf Terbanyak</h2>
+
+    <label for="kalimat">Kalimat:</label>
+    <input type="text" id="kalimat" placeholder="Masukkan kalimat" />
+
+    <br />
+
+    <button onclick="checkMostFrequentLetter()">Cari Huruf Terbanyak</button>
+
+    <div id="hasil"></div>
+  </body>
+</html>

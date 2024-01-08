@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anagram Checker</title>
+    <script>
+      function areAnagrams(sentence1, sentence2) {
+        const cleanSentence1 = sentence1.replace(/\s/g, "").toLowerCase();
+        const cleanSentence2 = sentence2.replace(/\s/g, "").toLowerCase();
+        const sortedSentence1 = cleanSentence1.split("").sort().join("");
+        const sortedSentence2 = cleanSentence2.split("").sort().join("");
+
+        return sortedSentence1 === sortedSentence2;
+      }
+
+      function checkAnagrams() {
+        const kalimat1 = document.getElementById("kalimat1").value;
+        const kalimat2 = document.getElementById("kalimat2").value;
+
+        const result = areAnagrams(kalimat1, kalimat2);
+
+        // Menampilkan hasil pada elemen dengan id "hasil"
+        document.getElementById("hasil").innerHTML = result
+          ? "Kalimat tersebut merupakan anagram."
+          : "Kalimat tersebut bukan anagram.";
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Memeriksa kalimat yang Sama</h2>
+
+    <label for="kalimat1">Kalimat 1:</label>
+    <input type="text" id="kalimat1" placeholder="Masukkan kalimat 1" />
+
+    <br />
+
+    <label for="kalimat2">Kalimat 2:</label>
+    <input type="text" id="kalimat2" placeholder="Masukkan kalimat 2" />
+
+    <br />
+
+    <button onclick="checkAnagrams()">Periksa</button>
+
+    <div id="hasil"></div>
+  </body>
+</html>
